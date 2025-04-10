@@ -15,6 +15,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                {% if user.is_authenticated %}
                 <ul class="navbar-nav me-auto">
                     <!-- Genres Section -->
                     <li class="nav-item">
@@ -30,6 +31,7 @@
                         <a class="nav-link" href="{% url 'genre_page' 4 %}">Sci-Fi</a>
                     </li>
                 </ul>
+                {% endif %}
                 <ul class="navbar-nav ms-auto">
                     <!-- Other Links Section -->
                     {% if user.is_authenticated %}
