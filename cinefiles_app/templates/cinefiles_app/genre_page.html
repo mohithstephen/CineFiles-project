@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ genre.name }} Movies - CineFiles{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">{{ genre.name }} Movies</h2>
+    <div class="row mt-4">
+        {% for movie in movies %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ movie.title }}</h5>
+                    <p class="card-text">{{ movie.description|truncatechars:100 }}</p>
+                    <div class="d-flex justify-content-between">
+                        <a href="{% url 'add_to_watchlist' movie.id %}" class="btn btn-success">
+                            <i class="bi bi-plus-circle"></i> Add to Watchlist
+                        </a>
+                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#rateModal-{{ movie.id }}">
+                            <i class="bi bi-star"></i> Rate
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal for Rating -->
+        <div class="modal fade" id="rateModal-{{ movie.id }}" tabindex="-1" aria-labelledby="rateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="rateModalLabel">Rate {{ movie.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'rate_movie' movie.id %}">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Your Rating (1-5)</label>
+                                <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required
+                                    value="{% if movie.user_rating %}{{ movie.user_rating }}{% endif %}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Rating</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.shortcuts import redirect
+from django.urls import path, include
 
 urlpatterns = [
     path('', include('authentication.urls')),
     path('', lambda request: redirect('login')),
     path('admin/', admin.site.urls),
+    path('', include('cinefiles_app.urls')),
 ]

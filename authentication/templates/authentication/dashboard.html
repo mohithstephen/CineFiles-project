@@ -5,5 +5,17 @@
 {% block content %}
 <div class="container">
     <h2 class="text-center my-4">Welcome to CineFiles Dashboard</h2>
+    <div class="row mt-4">
+        <!-- Example button for Horror genre -->
+        <div class="col-md-3">
+            <div class="card">
+                <img src="https://i.postimg.cc/9Xg6htrn/Copy-of-Love-Genre.png" class="card-img-top" alt="Horror">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Horror</h5>
+                    <a href="{% url 'genre_page' 1 %}" class="btn btn-primary">Explore Horror</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
