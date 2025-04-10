@@ -8,7 +8,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-    
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'dashboard' %}">CineFiles WebApp</a>
@@ -22,13 +21,22 @@
                             <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'genre_page' 1 %}">Horror</a> <!-- Link to Horror genre -->
+                            <a class="nav-link" href="{% url 'genre_page' 1 %}">Horror</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'genre_page' 2 %}">Thriller</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'genre_page' 3 %}">Comedy</a> <!-- Link to Comedy genre -->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'watchlist_page' %}">Watchlist</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'ratings_page' %}">Ratings</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'genre_page' 4 %}">Sci-Fi</a> <!-- Link to Sci-Fi genre -->
                         </li>
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post">
