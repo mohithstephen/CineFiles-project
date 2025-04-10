@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from .models import Genre, Movie, Watchlist, Rating
 from django.http import HttpResponse
+from .models import Watchlist
 
 def dashboard(request):
     genres = Genre.objects.all()  # Fetch all genres from the database
@@ -55,3 +56,22 @@ def rate_movie(request, movie_id):
             messages.error(request, "You need to log in to rate movies.")
         return redirect('genre_page', genre_id=movie.genre.id)
     return HttpResponse("Invalid request method.", status=405)
+
+def watchlist_page(request):
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to login if the user is not authenticated
+
+    # Fetch all movies in the user's watchlist
+    watchlist_movies = Watchlist.objects.filter(user=request.user).select_related('movie')
+
+    return render(request, 'cinefiles_app/watchlist.html', {'watchlist_movies': watchlist_movies})
+
+def remove_from_watchlist(request, movie_id):
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to login if the user is not authenticated
+
+    # Remove the movie from the user's watchlist
+    watchlist_entry = get_object_or_404(Watchlist, user=request.user, movie_id=movie_id)
+    watchlist_entry.delete()
+    messages.success(request, "Movie removed from your watchlist.")
+    return redirect('watchlist_page')

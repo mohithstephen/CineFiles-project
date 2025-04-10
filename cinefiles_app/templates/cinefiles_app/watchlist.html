@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Watchlist - CineFiles{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Your Watchlist</h2>
+    <div class="row mt-4">
+        {% if watchlist_movies %}
+            {% for entry in watchlist_movies %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ entry.movie.poster_url }}" class="card-img-top" alt="{{ entry.movie.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ entry.movie.title }}</h5>
+                        <p class="card-text">{{ entry.movie.description|truncatechars:100 }}</p>
+                        <a href="{% url 'remove_from_watchlist' entry.movie.id %}" class="btn btn-danger">
+                            <i class="bi bi-trash"></i> Remove
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">Your watchlist is empty. Start adding movies!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

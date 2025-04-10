@@ -25,6 +25,9 @@
                             <a class="nav-link" href="{% url 'genre_page' 1 %}">Horror</a> <!-- Link to Horror genre -->
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{% url 'watchlist_page' %}">Watchlist</a>
+                        </li>
+                        <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger btn-sm">Logout</button>
