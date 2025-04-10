@@ -5,7 +5,9 @@
 {% block content %}
 <div class="container mt-5">
     <h1 class="text-center mb-4">Welcome to CineFiles Dashboard</h1>
-    <p class="text-center text-muted">Explore movies by genre and manage your watchlist and ratings.</p>
+    <p class="text-center text-muted">
+        Hello, <strong>{{ user.username }}</strong>! Explore movies by genre and manage your watchlist and ratings.
+    </p>
 
     <div class="row mt-5">
         <!-- Horror Genre -->
