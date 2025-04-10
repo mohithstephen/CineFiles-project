@@ -9,4 +9,5 @@ urlpatterns = [
     path('watchlist/', views.watchlist_page, name='watchlist_page'),
     path('remove-from-watchlist/<int:movie_id>/', views.remove_from_watchlist, name='remove_from_watchlist'),
     path('ratings/', views.ratings_page, name='ratings_page'),
+    path('add-movie/', views.add_movie, name='add_movie'),
 ]

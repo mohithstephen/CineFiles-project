@@ -4,6 +4,9 @@ from .models import Genre, Movie, Watchlist, Rating
 from django.http import HttpResponse
 from .models import Watchlist
 from .models import Rating
+from .models import Genre, Movie
+from django.contrib import messages
+
 
 def dashboard(request):
     genres = Genre.objects.all()  # Fetch all genres from the database
@@ -85,3 +88,32 @@ def ratings_page(request):
     rated_movies = Rating.objects.filter(user=request.user).select_related('movie')
 
     return render(request, 'cinefiles_app/ratings.html', {'rated_movies': rated_movies})
+
+def add_movie(request):
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to login if the user is not authenticated
+
+    genres = Genre.objects.filter(name__in=["Horror", "Thriller", "Comedy", "Sci-Fi"])  # Fetch only the 4 genres
+
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        genre_id = request.POST.get('genre')
+        poster_url = request.POST.get('poster_url')
+        release_date = request.POST.get('release_date')
+
+        if title and genre_id and poster_url:
+            genre = Genre.objects.get(id=genre_id)
+            Movie.objects.create(
+                title=title,
+                description=description,
+                genre=genre,
+                poster_url=poster_url,
+                release_date=release_date
+            )
+            messages.success(request, f'Movie "{title}" has been added to the {genre.name} genre.')
+            return redirect('dashboard')
+        else:
+            messages.error(request, "Please fill in all required fields.")
+
+    return render(request, 'cinefiles_app/add_movie.html', {'genres': genres})
