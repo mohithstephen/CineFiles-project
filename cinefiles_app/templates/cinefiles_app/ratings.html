@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Ratings - CineFiles{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">Your Ratings</h2>
+    <div class="row mt-4">
+        {% if rated_movies %}
+            {% for entry in rated_movies %}
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="{{ entry.movie.poster_url }}" class="card-img-top" alt="{{ entry.movie.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ entry.movie.title }}</h5>
+                        <p class="card-text">{{ entry.movie.description|truncatechars:100 }}</p>
+                        <p class="card-text"><strong>Your Rating:</strong> {{ entry.rating }} / 5</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p class="text-center">You haven't rated any movies yet. Start rating now!</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

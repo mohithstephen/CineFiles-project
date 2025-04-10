@@ -3,6 +3,7 @@ from django.contrib import messages
 from .models import Genre, Movie, Watchlist, Rating
 from django.http import HttpResponse
 from .models import Watchlist
+from .models import Rating
 
 def dashboard(request):
     genres = Genre.objects.all()  # Fetch all genres from the database
@@ -75,3 +76,12 @@ def remove_from_watchlist(request, movie_id):
     watchlist_entry.delete()
     messages.success(request, "Movie removed from your watchlist.")
     return redirect('watchlist_page')
+
+def ratings_page(request):
+    if not request.user.is_authenticated:
+        return redirect('login')  # Redirect to login if the user is not authenticated
+
+    # Fetch all movies the user has rated
+    rated_movies = Rating.objects.filter(user=request.user).select_related('movie')
+
+    return render(request, 'cinefiles_app/ratings.html', {'rated_movies': rated_movies})
