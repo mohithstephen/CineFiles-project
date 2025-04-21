@@ -4,52 +4,52 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h1 class="text-center mb-4">Welcome to CineFiles Dashboard</h1>
-    <p class="text-center text-muted">
-        Hello, <strong>{{ user.username }}</strong>! Explore movies by genre and manage your watchlist and ratings.
+    <h1 class="text-center mb-4" style="color: #ff0000; font-weight: bold;">Welcome to CineFiles Dashboard</h1>
+    <p class="text-center" style="color: #ffffff; font-size: 1.1rem;">
+        Hello, <strong style="color: #ff0000;">{{ user.username }}</strong>! Explore movies by genre and manage your watchlist and ratings.
     </p>
 
     <div class="row mt-5">
         <!-- Horror Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm">
+            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/dVLBMphh/horror.webp" class="card-img-top genre-img" alt="Horror">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Horror</h5>
-                    <a href="{% url 'genre_page' 1 %}" class="btn btn-outline-primary">Explore Horror</a>
+                    <h5 class="card-title" style="color: #ff0000;">Horror</h5>
+                    <a href="{% url 'genre_page' 1 %}" class="btn btn-outline-danger">Explore Horror</a>
                 </div>
             </div>
         </div>
 
         <!-- Thriller Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm">
+            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/d1qZFZ55/thriller.jpg" class="card-img-top genre-img" alt="Thriller">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Thriller</h5>
-                    <a href="{% url 'genre_page' 2 %}" class="btn btn-outline-primary">Explore Thriller</a>
+                    <h5 class="card-title" style="color: #ff0000;">Thriller</h5>
+                    <a href="{% url 'genre_page' 2 %}" class="btn btn-outline-danger">Explore Thriller</a>
                 </div>
             </div>
         </div>
 
         <!-- Comedy Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm">
+            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/gJkjQF05/istockphoto-1317000702-612x612.jpg" class="card-img-top genre-img" alt="Comedy">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Comedy</h5>
-                    <a href="{% url 'genre_page' 3 %}" class="btn btn-outline-primary">Explore Comedy</a>
+                    <h5 class="card-title" style="color: #ff0000;">Comedy</h5>
+                    <a href="{% url 'genre_page' 3 %}" class="btn btn-outline-danger">Explore Comedy</a>
                 </div>
             </div>
         </div>
 
         <!-- Sci-Fi Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm">
+            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/Hn0pk6j5/Screenshot-2025-04-10-210359.png" class="card-img-top genre-img" alt="Sci-Fi">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Sci-Fi</h5>
-                    <a href="{% url 'genre_page' 4 %}" class="btn btn-outline-primary">Explore Sci-Fi</a>
+                    <h5 class="card-title" style="color: #ff0000;">Sci-Fi</h5>
+                    <a href="{% url 'genre_page' 4 %}" class="btn btn-outline-danger">Explore Sci-Fi</a>
                 </div>
             </div>
         </div>
@@ -58,30 +58,41 @@
 
 <style>
     /* Custom styles for the dashboard */
+    body {
+        background-color: #000000;
+    }
+
     .genre-card {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-radius: 10px;
+        border-radius: 15px;
         overflow: hidden;
     }
 
     .genre-card:hover {
         transform: scale(1.05);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
     }
 
     .genre-img {
         height: 200px;
         object-fit: cover;
+        border-bottom: 2px solid #ff0000;
     }
 
-    .btn-outline-primary {
+    .btn-outline-danger {
         border-radius: 20px;
         font-weight: bold;
+        color: #ff0000;
+        border-color: #ff0000;
     }
 
-    .btn-outline-primary:hover {
-        background-color: #007bff;
-        color: white;
+    .btn-outline-danger:hover {
+        background-color: #ff0000;
+        color: #ffffff;
+    }
+
+    h1, h5 {
+        font-family: 'Arial', sans-serif;
     }
 </style>
 {% endblock %}

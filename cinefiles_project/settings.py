@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -77,14 +77,13 @@ WSGI_APPLICATION = 'cinefiles_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'cinefiles_db',
-        'USER': 'cinefiles_user',
-        'PASSWORD': 'cinefilespass',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.getenv('DB_NAME', 'cinefiles_db'),  # Database name
+        'USER': os.getenv('DB_USER', 'cinefiles_user'),  # PostgreSQL username
+        'PASSWORD': os.getenv('DB_PASSWORD', 'cinefilespass'),  # Password for the database user
+        'HOST': os.getenv('DB_HOST', 'localhost'),  # Hostname
+        'PORT': os.getenv('DB_PORT', '5432'),  # Port where PostgreSQL is running
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
