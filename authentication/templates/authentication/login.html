@@ -1,21 +1,24 @@
 {% extends 'base.html' %}
 
-{% block title %}Login - CineFiles WebApp{% endblock %}
+{% block title %}Login - CineFiles{% endblock %}
 
 {% block content %}
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
 <div class="d-flex justify-content-center align-items-center vh-100" style="background: linear-gradient(135deg, #000000 0%, #ff0000 100%);">
     <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 20px; border: none; background: #1a1a1a;">
         <!-- CINEFILES Heading -->
-        <h1 class="text-center mb-4" style="font-family: 'Arial', sans-serif; color: #ffffff; font-weight: bold; font-size: 2.5rem; letter-spacing: 5px;">
+        <h1 class="text-center mb-4" style="font-family: 'Poppins', sans-serif; color: #ffffff; font-weight: 600; font-size: 2.5rem; letter-spacing: 5px;">
             CINEFILES
         </h1>
 
-        <h3 class="text-center mb-4" style="color: #ff0000; font-weight: bold; font-size: 1.8rem;">Login</h3>
+        <h3 class="text-center mb-4" style="font-family: 'Roboto', sans-serif; color: #ff0000; font-weight: 500; font-size: 1.8rem;">Login</h3>
 
         {% if messages %}
             {% for message in messages %}
                 {% if message.tags == "error" %}
-                    <div class="alert alert-danger" style="border-radius: 10px; font-size: 0.9rem; background-color: #ff4d4d; color: #ffffff;">
+                    <div class="alert alert-danger" style="border-radius: 10px; font-size: 0.9rem; background-color: #ff4d4d; color: #ffffff; font-family: 'Roboto', sans-serif;">
                         {{ message }}
                     </div>
                 {% endif %}
@@ -25,43 +28,43 @@
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
             <div class="mb-3">
-                <label class="form-label" style="font-weight: 500; color: #ffffff;">Username</label>
+                <label class="form-label" style="font-family: 'Roboto', sans-serif; font-weight: 500; color: #ffffff;">Username</label>
                 <input 
                     type="text" 
                     name="username" 
                     class="form-control" 
                     placeholder="Enter username" 
-                    style="border-radius: 10px; border: 1px solid #ff0000; padding: 10px; background-color: #2c2c2c; color: #ffffff;" 
+                    style="border-radius: 10px; border: 1px solid #ff0000; padding: 10px; background-color: #2c2c2c; color: #ffffff; font-family: 'Roboto', sans-serif;" 
                     required
                 >
             </div>
             <div class="mb-3">
-                <label class="form-label" style="font-weight: 500; color: #ffffff;">Password</label>
+                <label class="form-label" style="font-family: 'Roboto', sans-serif; font-weight: 500; color: #ffffff;">Password</label>
                 <input 
                     type="password" 
                     name="password" 
                     class="form-control" 
                     placeholder="Enter password" 
-                    style="border-radius: 10px; border: 1px solid #ff0000; padding: 10px; background-color: #2c2c2c; color: #ffffff;" 
+                    style="border-radius: 10px; border: 1px solid #ff0000; padding: 10px; background-color: #2c2c2c; color: #ffffff; font-family: 'Roboto', sans-serif;" 
                     required
                 >
             </div>
             <button 
                 type="submit" 
                 class="btn btn-danger w-100" 
-                style="border-radius: 10px; background-color: #ff0000; border: none; font-weight: bold; padding: 12px; font-size: 1.1rem; color: #ffffff; box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5);"
+                style="border-radius: 10px; background-color: #ff0000; border: none; font-weight: bold; padding: 12px; font-size: 1.1rem; color: #ffffff; box-shadow: 0px 4px 10px rgba(255, 0, 0, 0.5); font-family: 'Poppins', sans-serif;"
             >
                 Login
             </button>
         </form>
         
         <div class="text-center mt-4">
-            <p style="color: #ffffff; font-size: 0.9rem;">
+            <p style="color: #ffffff; font-size: 0.9rem; font-family: 'Roboto', sans-serif;">
                 Don't have an account? 
                 <a 
                     href="{% url 'register' %}" 
                     class="btn btn-outline-light btn-sm" 
-                    style="border-radius: 10px; font-weight: 500; padding: 5px 15px; color: #ffffff; border-color: #ff0000;"
+                    style="border-radius: 10px; font-weight: 500; padding: 5px 15px; color: #ffffff; border-color: #ff0000; font-family: 'Roboto', sans-serif;"
                 >
                     Register
                 </a>

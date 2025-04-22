@@ -3,19 +3,24 @@
 {% block title %}Dashboard - CineFiles WebApp{% endblock %}
 
 {% block content %}
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
 <div class="container mt-5">
-    <h1 class="text-center mb-4" style="color: #ff0000; font-weight: bold;">Welcome to CineFiles Dashboard</h1>
-    <p class="text-center" style="color: #ffffff; font-size: 1.1rem;">
+    <h1 class="text-center mb-4" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 3rem; letter-spacing: 2px;">
+        Welcome to CineFiles Dashboard
+    </h1>
+    <p class="text-center" style="color: #ffffff; font-size: 1.2rem; font-family: 'Roboto', sans-serif;">
         Hello, <strong style="color: #ff0000;">{{ user.username }}</strong>! Explore movies by genre and manage your watchlist and ratings.
     </p>
 
     <div class="row mt-5">
         <!-- Horror Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
+            <div class="card genre-card shadow-lg" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/dVLBMphh/horror.webp" class="card-img-top genre-img" alt="Horror">
                 <div class="card-body text-center">
-                    <h5 class="card-title" style="color: #ff0000;">Horror</h5>
+                    <h5 class="card-title" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 500;">Horror</h5>
                     <a href="{% url 'genre_page' 1 %}" class="btn btn-outline-danger">Explore Horror</a>
                 </div>
             </div>
@@ -23,10 +28,10 @@
 
         <!-- Thriller Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
+            <div class="card genre-card shadow-lg" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/d1qZFZ55/thriller.jpg" class="card-img-top genre-img" alt="Thriller">
                 <div class="card-body text-center">
-                    <h5 class="card-title" style="color: #ff0000;">Thriller</h5>
+                    <h5 class="card-title" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 500;">Thriller</h5>
                     <a href="{% url 'genre_page' 2 %}" class="btn btn-outline-danger">Explore Thriller</a>
                 </div>
             </div>
@@ -34,10 +39,10 @@
 
         <!-- Comedy Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
+            <div class="card genre-card shadow-lg" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/gJkjQF05/istockphoto-1317000702-612x612.jpg" class="card-img-top genre-img" alt="Comedy">
                 <div class="card-body text-center">
-                    <h5 class="card-title" style="color: #ff0000;">Comedy</h5>
+                    <h5 class="card-title" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 500;">Comedy</h5>
                     <a href="{% url 'genre_page' 3 %}" class="btn btn-outline-danger">Explore Comedy</a>
                 </div>
             </div>
@@ -45,10 +50,10 @@
 
         <!-- Sci-Fi Genre -->
         <div class="col-md-3">
-            <div class="card genre-card shadow-sm" style="background-color: #1a1a1a; border: none;">
+            <div class="card genre-card shadow-lg" style="background-color: #1a1a1a; border: none;">
                 <img src="https://i.postimg.cc/Hn0pk6j5/Screenshot-2025-04-10-210359.png" class="card-img-top genre-img" alt="Sci-Fi">
                 <div class="card-body text-center">
-                    <h5 class="card-title" style="color: #ff0000;">Sci-Fi</h5>
+                    <h5 class="card-title" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 500;">Sci-Fi</h5>
                     <a href="{% url 'genre_page' 4 %}" class="btn btn-outline-danger">Explore Sci-Fi</a>
                 </div>
             </div>
@@ -60,6 +65,7 @@
     /* Custom styles for the dashboard */
     body {
         background-color: #000000;
+        font-family: 'Roboto', sans-serif;
     }
 
     .genre-card {
@@ -84,6 +90,7 @@
         font-weight: bold;
         color: #ff0000;
         border-color: #ff0000;
+        font-family: 'Poppins', sans-serif;
     }
 
     .btn-outline-danger:hover {
@@ -91,8 +98,12 @@
         color: #ffffff;
     }
 
-    h1, h5 {
-        font-family: 'Arial', sans-serif;
+    h1 {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h5 {
+        font-family: 'Poppins', sans-serif;
     }
 </style>
 {% endblock %}

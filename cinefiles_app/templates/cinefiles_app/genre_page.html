@@ -3,21 +3,26 @@
 {% block title %}{{ genre.name }} Movies - CineFiles{% endblock %}
 
 {% block content %}
+<!-- Import Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Roboto:wght@300;500&display=swap" rel="stylesheet">
+
 <div class="container mt-5">
-    <h2 class="text-center">{{ genre.name }} Movies</h2>
+    <h2 class="text-center mb-4" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 2.5rem;">
+        {{ genre.name }} Movies
+    </h2>
     <div class="row mt-4">
         {% for movie in movies %}
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}">
+            <div class="card shadow-lg" style="background-color: #1a1a1a; border: none; border-radius: 15px; overflow: hidden;">
+                <img src="{{ movie.poster_url }}" class="card-img-top" alt="{{ movie.title }}" style="height: 300px; object-fit: cover; border-bottom: 2px solid #ff0000;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ movie.title }}</h5>
-                    <p class="card-text">{{ movie.description|truncatechars:100 }}</p>
+                    <h5 class="card-title" style="color: #ff0000; font-family: 'Poppins', sans-serif; font-weight: 500;">{{ movie.title }}</h5>
+                    <p class="card-text" style="color: #ffffff; font-family: 'Roboto', sans-serif; font-size: 0.9rem;">{{ movie.description|truncatechars:100 }}</p>
                     <div class="d-flex justify-content-between">
-                        <a href="{% url 'add_to_watchlist' movie.id %}" class="btn btn-success">
+                        <a href="{% url 'add_to_watchlist' movie.id %}" class="btn btn-outline-danger" style="border-radius: 10px; font-family: 'Poppins', sans-serif; font-weight: 500;">
                             <i class="bi bi-plus-circle"></i> Add to Watchlist
                         </a>
-                        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#rateModal-{{ movie.id }}">
+                        <button class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#rateModal-{{ movie.id }}" style="border-radius: 10px; font-family: 'Poppins', sans-serif; font-weight: 500;">
                             <i class="bi bi-star"></i> Rate
                         </button>
                     </div>
@@ -28,20 +33,20 @@
         <!-- Modal for Rating -->
         <div class="modal fade" id="rateModal-{{ movie.id }}" tabindex="-1" aria-labelledby="rateModalLabel" aria-hidden="true">
             <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="rateModalLabel">Rate {{ movie.title }}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <div class="modal-content" style="background-color: #1a1a1a; color: #ffffff; border-radius: 15px;">
+                    <div class="modal-header" style="border-bottom: 1px solid #ff0000;">
+                        <h5 class="modal-title" id="rateModalLabel" style="font-family: 'Poppins', sans-serif; color: #ff0000;">Rate {{ movie.title }}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: invert(1);"></button>
                     </div>
                     <div class="modal-body">
                         <form method="POST" action="{% url 'rate_movie' movie.id %}">
                             {% csrf_token %}
                             <div class="mb-3">
-                                <label for="rating" class="form-label">Your Rating (1-5)</label>
+                                <label for="rating" class="form-label" style="font-family: 'Roboto', sans-serif; color: #ffffff;">Your Rating (1-5)</label>
                                 <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" required
-                                    value="{% if movie.user_rating %}{{ movie.user_rating }}{% endif %}">
+                                    value="{% if movie.user_rating %}{{ movie.user_rating }}{% endif %}" style="background-color: #2c2c2c; color: #ffffff; border: 1px solid #ff0000; border-radius: 10px;">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit Rating</button>
+                            <button type="submit" class="btn btn-danger w-100" style="border-radius: 10px; font-family: 'Poppins', sans-serif; font-weight: 500;">Submit Rating</button>
                         </form>
                     </div>
                 </div>
@@ -50,4 +55,52 @@
         {% endfor %}
     </div>
 </div>
+
+<style>
+    body {
+        background-color: #000000;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(255, 0, 0, 0.5);
+    }
+
+    .btn-outline-danger {
+        color: #ff0000;
+        border-color: #ff0000;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .btn-outline-danger:hover {
+        background-color: #ff0000;
+        color: #ffffff;
+    }
+
+    .btn-outline-warning {
+        color: #ffc107;
+        border-color: #ffc107;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 500;
+    }
+
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: #000000;
+    }
+
+    h2 {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    h5 {
+        font-family: 'Poppins', sans-serif;
+    }
+</style>
 {% endblock %}
